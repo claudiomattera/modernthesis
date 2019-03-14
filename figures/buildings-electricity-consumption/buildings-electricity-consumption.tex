@@ -1,0 +1,87 @@
+%!TEX root = ../../thesis.tex
+\begin{tikzpicture}
+\begin{groupplot}[
+    width = 11.8cm,
+    height = 6.5cm,
+    group style = {
+        group name = group,
+        group size = 1 by 2,
+        vertical sep = 2cm,
+        x descriptions at = edge bottom
+    },
+    date coordinates in = x,
+    ybar stacked,
+    xtick = {2005-01-01,2007-01-01,2009-01-01,2011-01-01,2013-01-01,2015-01-01,2017-01-01},
+    xticklabel=\pgfcalendar{tickcal}{\tick}{\tick}{\year},
+    ylabel = {Electrical Consumption},
+    y unit = {\peta\watt\per\hour},
+    xlabel = {Year},
+    ymin = {-0.2},
+    ymax = {4.2},
+    xmin = {2004-01-01},
+    xmax = {2018-01-01},
+]
+\nextgroupplot[
+    title = {European Union (EU28)},
+    legend to name = common-legend,
+]
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {(\thisrow{EU28_other-sectors}) * 1e-6},
+]
+{figures/buildings-electricity-consumption/eu.csv};
+\addlegendentry{Residential and Commercial}
+
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {\thisrow{EU28_industry} * 1e-6},
+]
+{figures/buildings-electricity-consumption/eu.csv};
+\addlegendentry{Industry}
+
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {\thisrow{EU28_transport} * 1e-6},
+]
+{figures/buildings-electricity-consumption/eu.csv};
+\addlegendentry{Transports}
+
+
+\nextgroupplot[title={United States of America}]
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {(\thisrow{residential} + \thisrow{commercial}) * 1e-6},
+]
+{figures/buildings-electricity-consumption/usa.csv};
+
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {\thisrow{industrial} * 1e-6},
+]
+{figures/buildings-electricity-consumption/usa.csv};
+
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    y expr = {\thisrow{transport} * 1e-6},
+]
+{figures/buildings-electricity-consumption/usa.csv};
+
+\end{groupplot}
+
+\node
+    at ($ (group c1r1.north) + (0, 2cm) $)
+    {\ref{common-legend}};
+
+\end{tikzpicture}

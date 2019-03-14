@@ -1,0 +1,129 @@
+%!TEX program = lualatex
+
+\documentclass{modernthesis}
+\modernthesissetup{
+    title={Example Document using the Modernthesis Template},
+    author={Claudio Mattera},
+    email={fake@email.com},
+    linkedin={linkedin},
+    orcid={0000-0002-3801-5617},
+    googlescholar={Rw6VmLsAAAAJ},
+    researcherid={P-3517-2018},
+    year=2019,
+    month=2,
+    mainauthorpublications={
+        doi:10.1109/BigDataService.2017.48,
+        doi:10.1093/ijlct/cty019,
+        doi:10.1109/ISAECT.2018.8618755,
+        doi:10.3390/s18113931,
+        doi:10.3390/en12030468,
+        Mattera2019b,
+    },
+    coauthorpublications={
+        doi:10.1016/j.egypro.2017.09.625,
+        doi:10.1016/j.enbuild.2018.02.005,
+        doi:10.1145/3277868.3277875,
+        Jradi2019,
+        Arendt2019,
+    },
+    showprinter,
+    acronyms,
+    glossary,
+    cfivepaper,
+    separatebibliography,
+    highlightannotatedauthors,
+    highlightpubstate,
+    rotatesidewaysfloats,
+    showopenaccess,
+}
+
+\input{preamble}
+
+
+% Put glossary definitions in glossary.tex
+\loadglsentries[main]{glossary}
+
+% Put glossary definitions in acronyms.tex
+\loadglsentries[\acronymtype]{acronyms}
+
+% Load bibliography
+\addbibresource{bibliography.bib}
+
+
+
+
+\begin{document}
+
+\frontmatter
+
+\include{front-back-matter/title}
+\include{front-back-matter/abstract}
+\include{front-back-matter/publications}
+\include{front-back-matter/acknowledgments}
+\include{front-back-matter/contents}
+\include{front-back-matter/structure}
+
+\cleardoublepage
+
+\mainmatter
+
+\part{Background}
+\label{part:background}
+
+This \lcnamecref{part:background} serves as a general introduction to the work carried out during the \phd project.
+\Cref{chap:introduction} introduces the context of this thesis and presents the motivation, the research questions and the methodology.
+The current state of the art of the field is reviewed in \cref{chap:state-of-art}, where its gap is highlighted, and the contribution of the thesis is presented.
+
+\include{chapters/introduction}
+\include{chapters/state-of-art}
+
+\part{Publications}
+\label{part:publications}
+
+In this \lcnamecref{part:publications}, are reported, one per \lcnamecref{chap:publications:first-publication}, the following publications.
+
+\printbibliography[
+    segment=1,
+    heading=none,
+]
+
+Figures and tables were minimally edited to fit the layout of this thesis, and they are otherwise identical to the ones in aforementioned publications.
+Text was copied verbatim, except for bibliography reference numbers and styles which are kept uniform for the entire thesis, and for minor spelling adaptations and corrections.
+
+\iftoggle{separatebibliography}{
+A local bibliography is reported at the end of each \lcnamecref{chap:publications:first-publication}, listing all references cited in the corresponding publication.
+All references are also repeated in the global bibliography at the end of this thesis, on page~\pageref{chap:bibliography}.
+}{}
+
+\include{publications/first-publication/publication}
+\include{publications/second-publication/publication}
+\include{publications/third-publication/publication}
+
+\part{Conclusions}
+\label{part:conclusions}
+
+This \lcnamecref{part:conclusions} concludes the thesis.
+In \cref{chap:future-research}, future research directions are suggested in the context of the thesis.
+The findings of the thesis are summarized and elaborated in \cref{chap:conclusions}.
+
+\include{chapters/future-research}
+\include{chapters/conclusions}
+
+\appendix
+
+\backmatter
+
+% Printing the entire bibliography, even entries that were not cited in
+% the thesis.
+%\nocite{*}
+
+\addchap{Bibliography}\label{chap:bibliography}
+
+\AtNextBibliography{\restorebibmacro{pageref}}
+\printbibliography[
+    heading=none,
+    prenote=openaccess,
+]
+
+% \glsaddallunused
+\end{document}

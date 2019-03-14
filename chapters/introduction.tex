@@ -1,0 +1,405 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Introduction}
+\label{chap:introduction}
+
+In this \lcnamecref{chap:introduction}, the template for \phd thesis is introduced and instructions are provided.
+
+
+\section{Instructions}
+\label{sec:introduction:instructions}
+
+In this \lcnamecref{sec:introduction:instructions}, instructions to use this template are provided.
+Moreover, this document itself uses this template, and can be also used as documentation.
+
+In general, this template assumes the author has at least some knowledge of \LaTeX{}.
+The minimal-effort approach is to take this document and replace the text and chapters with new content.
+The majority of customizations are available through arguments to the document class.
+However, some customizations might require to change the class itself or to the document structure.
+
+This template is based on class \enquote{scrbook} from the \enquote{KOMA Script} bundle, therefore, it can be customized using the related commands.
+Note that some packages are not compatible with KOMA Script, and they will probably not work with this template.
+
+This template was designed to be used with Lua\LaTeX{}.
+While most of it should work with pdf\LaTeX{}, there might be something missing.
+\Eg the icons for contact information in the colophon require a \LaTeX{} processor that can use OTF fonts, or are otherwise replaced by textual labels.
+
+
+\subsection{Fonts Installation}
+
+The fonts used in this template are available in the directory \texttt{fonts}.
+They need to be installed in your operating system before they can be used by Lua\LaTeX{}.
+In alternative, it is possible to specify a directory when loading the fonts in the document class.
+
+
+\subsection{Configuration}
+
+This template consists of two elements: a custom \LaTeX{} class \enquote{modernthesis} and a certain document structure.
+The class defines the minimal document layout, \ie the fonts, the page size, the heading styles and some of the most important commands.
+The document structure complements the class with the content suitable to a \phd thesis.
+
+The bare minimum requirement for using this template is, therefore, to load its class, and run the command \mintinline{latex}{\modernthesissetup}.
+As shown in \cref{lst:example-setup}, this command is used to set most of the custom parameters necessary for generated content and customizations.
+
+\begin{listing}
+\caption{Example template setup}
+\label{lst:example-setup}
+\centering
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+\documentclass{modernthesis}
+\modernthesissetup{
+    title={Software Tools and Methods for Buildings
+            Fault Detection and Diagnostics},
+    author={Claudio Giovanni Mattera},
+    email={fake@email.com},
+    linkedin={linkedin},
+    orcid={0000-0002-3801-5617},
+    googlescholar={Rw6VmLsAAAAJ},
+    researcherid={P-3517-2018},
+    year=2019,
+    month=2,
+    mainauthorpublications={
+        doi:10.1109/BigDataService.2017.48,
+        doi:10.1093/ijlct/cty019,
+        doi:10.1109/ISAECT.2018.8618755,
+        doi:10.3390/s18113931,
+        doi:10.3390/en12030468,
+    },
+    coauthorpublications={
+        doi:10.1016/j.egypro.2017.09.625,
+        doi:10.1016/j.enbuild.2018.02.005,
+        doi:10.1145/3277868.3277875,
+    },
+    showprinter,
+    acronyms,
+    glossary,
+    cfivepaper,
+    highlightannotatedauthors,
+    highlightpubstate,
+    rotatesidewaysfloats,
+}
+\begin{document}
+...
+\end{document}
+\end{minted}
+\end{listing}
+
+Some of the arguments, such as \enquote{title}, \enquote{email}, \enquote{orcid} should be obvious, the others are documented in the following.
+
+\begin{description}
+    \item[mainauthorpublications] Contains the citation identifiers of the publications included in thesis written as main author.
+        They will be printed at the beginning of the thesis.
+    \item[coauthorpublications] Contains the citation identifiers of the publications not included in thesis and contributed as co-author.
+        They will be printed at the beginning of the thesis.
+    \item[showprinter] Enables the text \enquote{Printed by \ldots} in  the colophon.
+    \item[printer] Overrides the default printer name in the colophon.
+    \item[additionalcolophon] Adds content to the colophon.
+        It should start with a newline \mintinline{latex}{\\}.
+    \item[acronyms] Enables acronyms using package \enquote{glossaries}.
+    \item[glossariy] Enables the glossary using package \enquote{glossaries}.
+    \item[cfivepaper] Sets the paper size to C5.
+        It also sets to true the toggle \enquote{c5}, which can be used in the document to conditionally execute different parts.
+        If this argument is missing, or set to false, the page size is set to A4.
+    \item[paper] Explicitly sets the \enquote{paper} argument to the KOMA script class.
+        This allows to use other formats than A4 and C5.
+        It is overridden by \enquote{cfivepaper} if present.
+    \item[DIV] Explicitly sets the \enquote{DIV} argument to the KOMA script class.
+        This allows to use other formats than A4 and C5.
+        It is overridden by \enquote{cfivepaper} if present.
+    \item[highlightannotatedauthors] Highlights in boldface specific authors in the bibliography.
+        \Eg to highlight the third author in a reference, add \mintinline{bibtex}{author+an = {3=highlight}} in the bibliography file.
+    \item[highlightpubstate] Highlights in boldface the publication state, such as \enquote{submitted} or \enquote{in preparation}.
+    \item[separatebibliography] Sets to true the toggle \enquote{separatebibliography}, which can be used to repeat local bibliographies at the end of each publication included in the thesis.
+    \item[rotatesidewaysfloats] Redefines the command \mintinline{latex}{rotatesidewayslabel} so that it rotates the page for landscape floating environments.
+        The default implementation does nothing.
+    \item[highlightunderfullvboxes] Highlights in red paragraphs corresponding to underfull vboxes.
+        It requires Lua\LaTeX{}, and it might suffer from false positives.
+    \item[openaccess] Prints the Open Access logo next to each bibliographic reference.
+        It requires Lua\LaTeX{}.
+        The Open Access information is taken from the bibliography file.
+    \item[doiapi] Takes the Open Access information from an online service.
+        It requires Lua\LaTeX{} and it uses the specified email to query the service.
+\end{description}
+
+
+\subsection{Document Structure}
+
+\Cref{lst:document-structure} shows the document structure of this template.
+The actual document is slightly longer, here it is trimmed to fit the page layout, but all the core concepts are kept.
+
+\begin{listing}
+\caption{Example document structure}
+\label{lst:document-structure}
+\centering
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+\begin{document}
+\frontmatter
+\include{front-back-matter/title}
+\include{front-back-matter/abstract}
+\include{front-back-matter/publications}
+\include{front-back-matter/acknowledgments}
+\include{front-back-matter/contents}
+\include{front-back-matter/structure}
+
+\cleardoublepage
+\mainmatter
+
+\part{Background}
+\include{chapters/introduction}
+\include{chapters/state-of-art}
+
+\part{Publications}
+In this part, are reported, one per chapter, the
+following publications.
+\printbibliography[segment=1, heading=none]
+
+\include{publications/first-publication/publication}
+\include{publications/second-publication/publication}
+\include{publications/third-publication/publication}
+
+\part{Conclusions}
+\include{chapters/future-research}
+\include{chapters/conclusions}
+
+\appendix
+\backmatter
+\addchap{Bibliography}
+\printbibliography[heading=none, prenote=openaccess]
+\end{document}
+\end{minted}
+\end{listing}
+
+At first, the title page is included.
+The title page is created with the command \mintinline{latex}{\modernthesisfrontpage}.
+On the first recto, it typesets the title, author, departments and the rest of the expected information.
+On the first verso, it typesets the names of the supervisors, the names of the evaluation committee members, and the colophon, which contains also the author's contact information.
+
+After the title, the abstract, the lists of the included publications and the acknowledgement are included.
+The lists of publications are generated inside two refsegments, see the documentation of package \enquote{biblatex} for more details.
+
+Next, the table of contents, and all the specific lists of floats, acronyms and glossaries, are printed and, at the end of the front matter, the structure of the thesis is summarized.
+In the front matter, all pages are numbered using Roman numerals, with the exception of the title pages, recto and verso, which are unnumbered.
+At the beginning of the main matter, the page numbering is set to Arabic numerals and it restarts from \num{1}.
+
+The main matter is organized in three parts, \ie
+
+\begin{description}
+    \item[Background] Contains the introduction to the thesis, the review of the state of the art, and other optional chapters.
+    \item[Publications] Contains the publications included in the thesis, preceded by a short introduction and a bibliography.
+    \item[Conclusion] Contains the future research and conclusion chapters.
+\end{description}
+
+Finally, the back matter contains a common bibliography.
+
+
+\subsection{Compilation}
+
+This template is configured to be compiled using \enquote{latexmk}.
+The file \texttt{latexmkrc} already contains the required commands, so the compilation literally consists of the single command \mintinline{shell}{latexmk}.
+
+By default the document is compiled with Lua\LaTeX{}.
+In order to switch to pdf\LaTeX{} it is enough to set the PDF mode to \num{1} by changing the first line in the file \texttt{latexmkrc} to \mintinline{perl}{$pdf_mode = 1;}.
+
+
+\subsection{Conventions and Requirements}
+
+This template mandates or, at least, suggests certain conventions.
+The reason behind this is to maintain a consistent style over the document.
+\Eg if dates are typeset manually, the author might use different formats in different chapters.
+Using commands, instead, prevents this issue.
+
+First of all, this template should be used with Lua\LaTeX{}.
+Lua\LaTeX{} allows to access fonts in True Type and Open Type formats.
+Moreover, it allows to extend \LaTeX{} functionality using Lua programming language.
+Some of the packages included in this template require Lua\LaTeX{}, however, most of it should work with other distributions as well, provided fonts are loaded in an alternative way.
+
+Therefore, dates should always be typeset using the command \mintinline{latex}{\DTMdisplaydate{2016}{9}{1}{3}}, which renders \enquote{\DTMdisplaydate{2016}{9}{1}{3}}.
+The last field is the weekday, starting from \num{0} for \DTMWeekdayname{0}.
+In case the weekday is not important, setting it to \num{-1} removes it, as in \mintinline{latex}{\DTMdisplaydate{2016}{9}{1}{-1}}, which renders \enquote{\DTMdisplaydate{2016}{9}{1}{-1}}.
+The names of weekdays and months should be typeset with \mintinline{latex}{\DTMWeekdayname{3}} and \mintinline{latex}{\DTMMonthname{3}}, which render, respectively, \enquote{\DTMWeekdayname{3}} and \enquote{\DTMMonthname{3}}.
+Similarly, times should be typeset using the command \mintinline{latex}{\DTMdisplaytime{8}{10}{0}}, which renders \enquote{\DTMdisplaytime{8}{10}{0}}.
+
+Words and sentences should be quoted using package \enquote{csquotes}, which uses the correct convention according to the language, \eg
+\mintinline{latex}{\enquote{A quoted sentence}}, which renders \enquote{A quoted sentence}.
+
+A few common abbreviations are defined.
+\Eg \mintinline{latex}{\Eg}, \mintinline{latex}{\eg}, \mintinline{latex}{\Ie}, \mintinline{latex}{\ie} and \mintinline{latex}{\phd}, which render \enquote{\Eg, \eg, \Ie, \ie and \phd}.
+Do not add a comma after them, it is already typeset automatically depending on the language convention.
+
+Numbers and units should be typeset using the package \enquote{siunitx}.
+\Eg thirty-two kilowatt hour should be typeset using the command \mintinline{latex}{\SI{32}{\kilo\watt\hour}}, which renders \enquote{\SI{32}{\kilo\watt\hour}}.
+Raw numbers should be typeset with \mintinline{latex}{\num{244}}, which renders \enquote{\num{244}}.
+Ranges and lists should be typeset with \mintinline{latex}{\SIrange{10}{15}{\celsius}} and \mintinline{latex}{\SIlist{400;500;600}{\ppm}}, which render \enquote{\SIrange{10}{15}{\celsius} and \SIlist{400;500;600}{\ppm}}.
+If necessary, additional units can be created.
+
+Chemical formulas should \emph{not} be typeset exploiting mathematical mode.
+Instead, the package \enquote{mhchem} should be used.
+\mintinline{latex}{\ce{CO2}} renders \enquote{\ce{CO2}}.
+
+Acronyms and glossaries should be created with package \enquote{glossaries}.
+Acronyms should be typeset with \mintinline{latex}{\ac{bms}}, or \mintinline{latex}{\Ac{bms}} if the initial letter must be capitalized, \eg at the beginning of a sentence\footnote{Often, this only affects the first use.}.
+Plural forms can be typeset with \mintinline{latex}{\acp{bms}}.
+On first use, both long and short version will be shown, later only the short one.
+First use is reset at the beginning of each part and chapter.
+The previous examples render, respectively, \enquote{\ac{bms}}, \enquote{\Ac{bms}} and \enquote{\acp{bms}}.
+To force the long version, use the command \mintinline{latex}{\acl{bms}}, which always renders \enquote{\acl{bms}}.
+
+Glossary entries should be typeset with \mintinline{latex}{\gls{co2}}, which render \enquote{\gls{co2}}.
+In some cases, the command \mintinline{latex}{\glsadd{co2}} can be used when the text is about the entry, but it is not named exactly as in the glossary.
+It will record the usage of the entry, but it will not render anything.
+
+Bibliographic references use the \enquote{biblatex} package, and citations should be typeset with \mintinline{latex}{\autocite{eu:32018L0844}}, and should be separated by the previous word with a non-breaking space \mintinline{latex}{~}, which renders the following~\autocite{eu:32018L0844}.
+Few commands are available for typesetting specific fields such as \mintinline{latex}{\citetitle{eu:32018L0844}}, \mintinline{latex}{\citeauthor{eu:32018L0844}}, \mintinline{latex}{\citeyear{eu:32018L0844}} or \mintinline{latex}{\citejournal{eu:32018L0844}}.
+The examples render, respectively, \citetitle{eu:32018L0844}, \citeauthor{eu:32018L0844}, \citeyear{eu:32018L0844} or \citejournal{eu:32018L0844}.
+Another useful command for bibliographic citations is \mintinline{latex}{\longfullcite{eu:32018L0844}}, which replicates the citation as it is typeset in the bibliography, and renders the following.
+
+\longfullcite{eu:32018L0844}.
+
+Cross-references should be typeset using the \enquote{cleveref} package.
+The command \mintinline{latex}{\cref{chap:introduction}} renders \enquote{\cref{chap:introduction}}.
+
+Figures are typeset as usual in \LaTeX, which renders as shown in \cref{fig:buildings-electricity-consumption}.
+Figures (and other floats such as tables) should be smaller than the page size, which is \uselengthunit{cm}\printlength{\textwidth} by \uselengthunit{cm}\printlength{\textheight}.
+Figures can be typeset in landscape mode using the environment \enquote{sidewaysfigure}, which renders as shown in \cref{fig:buildings-co2-emissions-eu}.
+Tables can also typeset in landscape mode using the environment \enquote{sidewaystable}.
+The command \mintinline{latex}{\rotatesidewayslabel} can be used inside the floating environment and, if the class option \enquote{rotatesidewaysfloats} was specified, it will rotate the relative page in the PDF document, as shown in \cref{fig:buildings-co2-emissions-usa}.
+Note that landscape figures cannot be put in the front matter, \ie where pages are numbered with Roman numerals.
+
+The command \mintinline{latex}{\caption[short]{long}} can be used to create captions inside floating environments.
+The normal caption is specified between braces, and it must \emph{not} be terminated by a period, because one will be added automatically.
+An optional short caption can be specified between square brackets, and it will be used in the table of contents and in the running headers.
+
+\begin{figure}
+\centering
+\input{figures/buildings-electricity-consumption/buildings-electricity-consumption}
+\caption[Electricity consumption due to buildings]
+{Electricity consumption due to buildings in Europe and the United States of America}
+\label{fig:buildings-electricity-consumption}
+\end{figure}
+
+\begin{sidewaysfigure}
+\centering
+\input{figures/buildings-co2-emissions/buildings-co2-emissions-eu}
+\caption[Carbon emissions due to buildings in Europe]
+{Carbon emissions due to buildings in Europe}
+\label{fig:buildings-co2-emissions-eu}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\rotatesidewayslabel
+\centering
+\input{figures/buildings-co2-emissions/buildings-co2-emissions-usa}
+\caption[Carbon emissions due to buildings in the United States of America]
+{Carbon emissions due to buildings in the United States of America}
+\label{fig:buildings-co2-emissions-usa}
+\end{sidewaysfigure}
+
+
+
+\section{Customization}
+
+\subsection{Custom Floats}
+
+\LaTeX{} offers by default floating environments for figures and tables.
+Other packages add more environments, e.g. \enquote{minted} adds listings.
+Sometimes it is nice to add additional ones, e.g. \enquote{rules} or \enquote{examples}.
+
+The following example adds a new floating environment for rules.
+The environment is first defined in \cref{lst:new-floating-environment}, and the names of references are defined in \cref{lst:new-floating-environment-references}.
+Both these snippets must be in the preamble.
+
+\begin{listing}
+\caption{Definition of a new floating environment}
+\label{lst:new-floating-environment}
+\centering
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+\DeclareNewTOC[%
+    type=algorithmrule, % This is the name of the
+                        % floating environment
+    float,
+    floatpos=tbph,
+    counterwithin=chapter,
+    name=Rule,
+    listname={List of Rules},
+    tocentryindent=1.5em, % default is 1em, figure
+                          % uses 1.5em
+    tocentrynumwidth=2.3em, % default is 1.5em,
+                            % figure uses 2.3em
+]{listofrules}
+
+\setuptoc{listofrules}{chapteratlist}
+\end{minted}
+\end{listing}
+
+
+\begin{listing}
+\caption[References customization of new floating environment]
+{References customization of a new floating environment}
+\label{lst:new-floating-environment-references}
+\centering
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+% This sets up the names for package cleveref
+\if@cref@capitalise
+    \crefname{algorithmrule}{Rule}{Rules}
+\else
+    \crefname{algorithmrule}{rule}{rules}
+\fi
+
+\Crefname{algorithmrule}{Rule}{Rules}
+\end{minted}
+\end{listing}
+
+The list of new floating environments can be added after the table of contents, as shown in \cref{lst:new-floating-environment-print-list}.
+
+\begin{listing}
+\caption{Printing the list of new floating environments}
+\label{lst:new-floating-environment-print-list}
+\centering
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+\cleardoublepage\listofalgorithmrules
+\addcontentsline{toc}{chapter}{\listalgorithmrulename}
+\end{minted}
+\end{listing}
+
+Finally, the new floating environment is used in the document as shown in \cref{lst:new-floating-environment-usage}.
+
+\begin{listing}
+\caption{Usage of new floating environments}
+\label{lst:new-floating-environment-usage}
+\begin{minted}[frame=lines, fontsize=\small,]{latex}
+\begin{algorithmrule}[h]
+\caption{My rule}
+\label{rule:my-rule}
+\begin{algorithmic}
+\IF{$a > b$}
+    \IF{$a > c $}
+        \STATE $a$ is the largest
+    \ENDIF
+\ENDIF
+\end{algorithmic}
+\end{algorithmrule}
+\end{minted}
+\end{listing}
+
+
+\section{Terms of Use}
+
+There are no particular restrictions on the use of this template.
+It would be nice of you to keep the text \enquote{using \textelp{} the \modernthesistemplatename{} template created by Claudio Mattera} in the colophon, but it is not a requirement.
+Feel also free to modify the template if it suits you better.
+The fonts included in this template have free-software licenses, and they are available in the same directory.
+
+
+\section{Structure of the Thesis}
+
+The rest of the thesis is structured as it follows.
+The current state of the art of the field is reviewed in \cref{chap:state-of-art}, where its gap is highlighted, and the contribution of the thesis is presented.
+
+\Cref{part:publications} contains the individual publications, both published and under review, included in this thesis.
+In \cref{chap:publications:first-publication}, the first publication is reported.
+In \cref{chap:publications:second-publication}, the second publication is reported.
+In \cref{chap:publications:third-publication}, the third publication is reported.
+
+\Cref{part:conclusions} concludes the thesis.
+In \cref{chap:future-research}, future research directions are suggested in the context of the thesis.
+The findings of the thesis are summarized and elaborated in \cref{chap:conclusions}.

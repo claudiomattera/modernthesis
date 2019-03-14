@@ -1,0 +1,157 @@
+%!TEX root = ./thesis.tex
+
+% This preamble is not strictly part of the class, but it is used for the
+% documentation template.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% SI units
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use like this:
+% \SI{10}{\mega\watt\hour}
+% si{\watt}
+% \num{24}
+
+\RequirePackage{siunitx}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\boolean{boolean}
+\DeclareSIUnit\rpm{RPM}
+\DeclareSIUnit\btu{BTU}
+\DeclareSIUnit\dollar{\$}
+
+\DeclareSIUnit\million{million}
+\DeclareSIUnit\billion{billion}
+
+
+\sisetup{
+    detect-mode,
+    per-mode = symbol,
+    forbid-literal-units,
+    group-digits = false,
+    input-signs = {},
+    input-symbols = ()[]-+,
+    input-open-uncertainty = {},
+    input-close-uncertainty = {},
+    table-align-text-post = false
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Chemical formulas
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use like this:
+% \ce{CO2}
+
+\RequirePackage[version=4]{mhchem}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Listings
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[
+    chapter,
+    newfloat=true,
+]{minted}
+\usemintedstyle{tango}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% PGFPlots
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
+\usepgfplotslibrary{units}
+\usepgfplotslibrary{colorbrewer}
+
+% Necessary to use SI units in charts
+% y unit = \meter
+\pgfplotsset{
+  unit code/.code 2 args=
+    \begingroup
+    \protected@edef\x{\endgroup\si{#1#2}}\x
+}
+
+% Set color index
+\pgfplotsset{
+    cycle list/Set1-9,
+    cycle multiindex* list = {
+        mark list*\nextlist
+        linestyles*\nextlist
+        Set1-9\nextlist
+    },
+}
+
+% Set color index for bar plots
+\pgfplotsset{
+    /pgfplots/bar cycle list/.style={
+        /pgfplots/cycle list={%
+            {draw=Set1-A,fill=Set1-A!30!white,mark=none},%
+            {draw=Set1-B,fill=Set1-B!30!white,mark=none},%
+            {draw=Set1-C,fill=Set1-C!30!white,mark=none},%
+            {draw=Set1-D,fill=Set1-D!30!white,mark=none},%
+            {draw=Set1-E,fill=Set1-E!30!white,mark=none},%
+            {draw=Set1-F!70!black,fill=Set1-F!30!white,mark=none},%
+            {draw=Set1-G,fill=Set1-G!30!white,mark=none},%
+            {draw=Set1-H,fill=Set1-H!30!white,mark=none},%
+        }
+    },
+}
+
+% Align left legend entries by default
+\pgfplotsset{
+    legend cell align = left,
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Improve lists
+\usepackage[inline]{enumitem}
+
+% Reduce space between items
+\setlist{noitemsep}
+
+% Change top-level bullet with dash
+\setlist[itemize]{
+    label={--}
+}
+
+% Change font for descriptions
+\setlist[description]{
+    font={\rmfamily\itshape\mdseries}
+}
+
+% For pretty tables
+\RequirePackage{booktabs}
+
+% For multirow cells in tables
+\RequirePackage{multirow}
+
+% For multiline cells in tables
+\RequirePackage{makecell}
+
+% For pretty quotes
+\RequirePackage{csquotes}
+
+% For printing page dimensions
+\RequirePackage{printlen}
+
+% Epigraph used in the acknowledgement
+\RequirePackage{epigraph}

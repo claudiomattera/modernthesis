@@ -1,0 +1,21 @@
+%!TEX root = ../thesis.tex
+
+\let\defaultchapterheadstartvskip\chapterheadstartvskip
+\renewcommand{\dropchapter}[1]{
+  \renewcommand{\chapterheadstartvskip}{\vspace{#1}}
+}
+\renewcommand{\undodrop}[0]{
+  \renewcommand{\chapterheadstartvskip}{\defaultchapterheadstartvskip}
+}
+
+\dropchapter{2.5cm}
+\addchap{Acknowledgments}
+
+\setlength\epigraphwidth{6cm}
+\epigraphhead[70]{%
+\epigraph{\scriptfamily Light thinks it travels faster than anything but it is wrong. No matter how fast light travels, it finds the darkness has always got there first, and is waiting for it.}{\textsc{Sir Terry Pratchett}}%
+}
+
+\undodrop
+
+This document was typeset using the \modernthesistemplatename{} template for \phd thesis created by Claudio Mattera.

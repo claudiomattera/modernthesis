@@ -1,0 +1,46 @@
+%!TEX root = ../../thesis.tex
+\begin{tikzpicture}
+\begin{axis}[
+    width = 16cm,
+    height = 10cm,
+    date coordinates in = x,
+    area style,
+    scaled y ticks=base 10:-9,
+    y tick label style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision = 4,
+    },
+    xtick = {1995-01-01,2000-01-01,2005-01-01,2010-01-01,2015-01-01},
+    xticklabel=\pgfcalendar{tickcal}{\tick}{\tick}{\year},
+    ylabel = {\ce{CO2} Emissions},
+    y unit = {\tonne},
+    xlabel = {Year},
+    ymin = -0.3e9,
+    ymax = 7.5e9,
+    title = {United States of America},
+]
+\pgfplotsset{cycle list shift=3}
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    % Input is in millions of metric tons
+    y expr = {(\thisrow{commercial} + \thisrow{residential} + \thisrow{industrial} + \thisrow{transport}) * 1e6},
+]
+{figures/buildings-co2-emissions/usa.csv}
+\closedcycle;
+\addlegendentry{Total}
+
+\pgfplotsset{cycle list shift=-1}
+\addplot+[
+] table[
+    col sep = comma,
+    x = {date},
+    % Input is in millions of metric tons
+    y expr = {(\thisrow{commercial} + \thisrow{residential}) * 1e6},
+]
+{figures/buildings-co2-emissions/usa.csv}
+\closedcycle;
+\addlegendentry{Residential and Commercial}
+\end{axis}
+\end{tikzpicture}

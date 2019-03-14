@@ -1,0 +1,31 @@
+%!TEX root = ../../thesis.tex
+
+\chapter[Linear Regression Virtual Sensors]%
+{Introducing Redundancy through Linear Regression Virtual Sensors}
+\label{chap:publications:third-publication}
+
+\begin{refsegment}
+
+This \lcnamecref{chap:publications:third-publication} is a cosmetic adaptation of the following conference paper.
+
+\longfullcite{doi:10.1109/ISAECT.2018.8618755}
+
+This work was the result of a collaboration with the Center for Supervision, Security and Automatic Control (CS\textsuperscript{2}AC), at the Polytechnic University of Catalonia (UPC), Barcelona, Spain.
+
+The paper was presented at the IEEE International Symposium on Advanced Electrical and Communication Technologies in Kenitra, Morocco, on \DTMdisplaydate{2018}{11}{21}{2}.
+
+
+
+\iftoggle{separatebibliography}{
+    % This is "partially" local to to the enclosing refsegment.
+    % Meaning that paper cited in this bibliography will not appear in the main
+    % bibliography, unless they are also cited outside this refsegment.
+    % However, if option `sorting=none' is passed to biblatex, citations in
+    % this bibliography will affect the citation order.
+    % Long story short, do not use `\nocite{*}' but pass only the entries to
+    \printbibliography[
+        heading=subbibliography,
+        segment=\therefsegment,
+    ]
+}{}
+\end{refsegment}

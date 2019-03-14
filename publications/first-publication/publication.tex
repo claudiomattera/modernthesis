@@ -1,0 +1,39 @@
+%!TEX root = ../../thesis.tex
+
+\chapter[Sensors Validation]%
+{Sensors Validation: a Precondition to any Building Application}
+\label{chap:publications:first-publication}
+
+\begin{refsegment}
+
+This \lcnamecref{chap:publications:first-publication} is a cosmetic adaptation of the following conference paper.
+
+\longfullcite{doi:10.1109/BigDataService.2017.48}
+
+The paper was presented at the IEEE Third International Conference on Big Data Computing Service and Applications in San Francisco, USA, on \DTMdisplaydate{2017}{4}{9}{6}.
+
+
+\section*{abstract}
+
+An abstract
+
+\section{Introduction}
+
+In the bibliography at the end of this chapter, if enabled at all, only references cited in this chapter are reported, such as \citetitle{eu:32018L0844}~\autocite{eu:32018L0844} and \citetitle{doi:10.1145/3277868.3277875}~\autocite{doi:10.1145/3277868.3277875}.
+
+
+
+\iftoggle{separatebibliography}{
+    % This is "partially" local to to the enclosing refsegment.
+    % Meaning that paper cited in this bibliography will not appear in the main
+    % bibliography, unless they are also cited outside this refsegment.
+    % However, if option `sorting=none' is passed to biblatex, citations in
+    % this bibliography will affect the citation order.
+    % Long story short, do not use `\nocite{*}' but pass only the entries to
+    % explicitly cite.
+    \printbibliography[
+        heading=subbibliography,
+        segment=\therefsegment,
+    ]
+}{}
+\end{refsegment}

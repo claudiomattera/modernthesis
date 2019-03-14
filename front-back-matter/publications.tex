@@ -1,0 +1,44 @@
+%!TEX root = ../thesis.tex
+
+\addchap{Publications}
+
+\begin{refsegment}
+    % This is "partially" local to to the enclosing refsegment.
+    % Meaning that paper cited in this bibliography will not appear in the main
+    % bibliography, unless they are also cited outside this refsegment.
+    % However, if option `sorting=none' is passed to biblatex, citations in
+    % this bibliography will affect the citation order.
+    % Long story short, do not use `\nocite{*}' but pass only the entries to
+    % explicitly cite.
+    %
+    % Also, do not use `heading=subbibliography', because it removes the
+    % running headers on this page.
+    % Instead, create a section manually.
+
+    \section*{Main author publications}
+
+    \nocite{\modernthesismainauthorpublications}
+    \printbibliography[
+        category=mainauthor,
+        heading=none,
+        prenote=mainauthor,
+    ]
+\end{refsegment}
+
+\iftoggle{c5}{%
+}{%
+    \newpage
+}
+
+\begin{refsegment}
+    % See note in previous refsegment.
+
+    \section*{Co-author publications}
+
+    \nocite{\modernthesiscoauthorpublications}
+    \printbibliography[
+        category=coauthor,
+        heading=none,
+        prenote=coauthor,
+    ]
+\end{refsegment}

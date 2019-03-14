@@ -1,0 +1,28 @@
+%!TEX root = ../../thesis.tex
+
+\chapter[Online Energy Simulator]%
+{Identifying Faulty Subsystems with Online Energy Simulator}
+\label{chap:publications:second-publication}
+
+\begin{refsegment}
+
+This \lcnamecref{chap:publications:second-publication} is a cosmetic adaptation of the following journal paper.
+
+\longfullcite{doi:10.1093/ijlct/cty019}
+
+
+
+\iftoggle{separatebibliography}{
+    % This is "partially" local to to the enclosing refsegment.
+    % Meaning that paper cited in this bibliography will not appear in the main
+    % bibliography, unless they are also cited outside this refsegment.
+    % However, if option `sorting=none' is passed to biblatex, citations in
+    % this bibliography will affect the citation order.
+    % Long story short, do not use `\nocite{*}' but pass only the entries to
+    % explicitly cite.
+    \printbibliography[
+        heading=subbibliography,
+        segment=\therefsegment,
+    ]
+}{}
+\end{refsegment}
