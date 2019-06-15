@@ -47,6 +47,7 @@
         paper=\modernthesis@paper,
         pagesize=luatex,
         DIV=\modernthesis@DIV,
+        BCOR=\modernthesis@BCOR,
         chapterprefix=false,
         numbers=noenddot,
         captions=tableheading,
@@ -228,6 +229,8 @@
 
 \DeclareStringOption{mainauthorpublications}
 \DeclareStringOption{coauthorpublications}
+
+\DeclareStringOption[0cm]{BCOR}
 
 \DeclareBoolOption{glossary}
 \DeclareComplementaryOption{noglossary}{glossary}
