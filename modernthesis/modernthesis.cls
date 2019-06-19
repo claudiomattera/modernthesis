@@ -344,6 +344,7 @@
 \else % Not LuaLaTeX
     \PackageWarning{modernthesis}{Using T1 fonts with pdflatex. Check that non-ASCII characters are correctly typeset, or switch to lualatex}
 
+    \RequirePackage[T1]{fontenc}
     \RequirePackage{cabin}
     \RequirePackage{tgchorus}
     \RequirePackage{inconsolata}
