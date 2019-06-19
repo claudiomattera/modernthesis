@@ -27,3 +27,4 @@ The following packages must be installed (this list might be incomplete).
 - minted
 - academicons
 - fontawesome
+- ec
