@@ -174,7 +174,7 @@
             % The following code checks which entries are open access, and adds the
             % corresponding symbol to the bibliography
 
-            \RequirePackage[doiapi=true,tikzsymbol=false]{biblatex-ext-oa}
+            \RequirePackage[doiapi=true, symbolpackage=false]{biblatex-ext-oa}
 
             % By default, read Open Access information from the .bib file
             % If option 'doiapi' was specified, an online service will be queried.
