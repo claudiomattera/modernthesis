@@ -18,8 +18,10 @@ The following packages must be installed (this list might be incomplete).
 - biber
 - biblatex
 - biblatex-ext
+- bitset
 - booktabs
 - caption
+- catchfile
 - cleveref
 - csquotes
 - datatool
@@ -52,6 +54,7 @@ The following packages must be installed (this list might be incomplete).
 - multirow
 - nag
 - newfloat
+- pdfescape
 - pdflscape
 - pdftexcmds
 - pgfplots
