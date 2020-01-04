@@ -54,6 +54,7 @@ The following packages must be installed (this list might be incomplete).
 - multirow
 - nag
 - newfloat
+- nextpage
 - pdfescape
 - pdflscape
 - pdftexcmds
