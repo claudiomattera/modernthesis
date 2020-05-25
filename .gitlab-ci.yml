@@ -1,11 +1,24 @@
 stages:
   - build
 
-build:latexmk:
+build:latexmk:debian:
+  stage: build
+  image: debian:latest
+  before_script:
+    - .ci/prepare_environment_debian.sh
+  script:
+    - export PATH=/opt/texlive/2020/bin/x86_64-linux/:${PATH}
+    - latexmk
+  artifacts:
+    paths:
+      - 'thesis.pdf'
+
+# Disabling until xindy is packaged for x86_64-linuxmusl
+.build:latexmk:alpine:
   stage: build
   image: alpine:latest
   before_script:
-    - .ci/prepare_environment.sh
+    - .ci/prepare_environment_alpine.sh
   script:
     - export PATH=/opt/texlive/2020/bin/x86_64-linuxmusl/:${PATH}
     - latexmk

@@ -13,7 +13,7 @@ find ./fonts/ \( -iname "*.ttf" -or -iname "*.otf" \) -exec cp '{}' ~/.fonts/ \;
 # Install TeX Live (skip if already installed)
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --output-document=/tmp/install-tl-unx.tar.gz
 tar xpf /tmp/install-tl-unx.tar.gz -C /tmp
-/tmp/install-tl-*/install-tl --profile .ci/texlive.profile
+/tmp/install-tl-*/install-tl --profile .ci/texlive-alpine.profile
 export PATH=/opt/texlive/2020/bin/x86_64-linuxmusl/:${PATH}
 
 # Install LaTeX dependencies (skip if using a full TeX Live installation)
