@@ -43,6 +43,7 @@ The following packages must be installed (this list might be incomplete).
 - hyphen-danish
 - hyphen-english
 - infwarerr
+- koma-script
 - l3backend
 - letltxmacro
 - lineno
@@ -50,6 +51,7 @@ The following packages must be installed (this list might be incomplete).
 - makecell
 - mfirstuc
 - mhchem
+- microtype
 - minted
 - multirow
 - nag
@@ -66,6 +68,7 @@ The following packages must be installed (this list might be incomplete).
 - tracklang
 - unicode-math
 - upquote
+- xcolor
 - xfor
 - xindy
 - xkeyval
