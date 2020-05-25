@@ -17,7 +17,7 @@ tar xpf /tmp/install-tl-unx.tar.gz -C /tmp
 export PATH=/opt/texlive/2020/bin/x86_64-linuxmusl/:${PATH}
 
 # Install LaTeX dependencies (skip if using a full TeX Live installation)
-tlmgr install `cat ./dependencies.txt`
+tlmgr install `cat .ci/dependencies.txt`
 
 
 # Manually compile xindy
@@ -25,6 +25,11 @@ tlmgr install `cat ./dependencies.txt`
 # This is only necessary on Alpine (or other distributions using musl libc),
 # since xindy is not (yet) packaged for those platforms.
 # This is irrelevant anywhere else (regular Linux distributions or Windows).
+#
+# More information here:
+# http://ftp.math.utah.edu/pub/texlive-utah/README.html
+# and here:
+# http://www.linuxfromscratch.org/blfs/view/8.3/pst/xindy.html
 apk add make musl-dev gcc
 apk add clisp --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 wget http://mirrors.ctan.org/indexing/xindy/base/xindy-2.5.1.tar.gz --output-document=/tmp/xindy-2.5.1.tar.gz
