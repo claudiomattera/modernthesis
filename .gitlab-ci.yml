@@ -1,0 +1,14 @@
+stages:
+  - build
+
+build:latexmk:
+  stage: build
+  image: alpine:latest
+  before_script:
+    - .ci/prepare_environment.sh
+  script:
+    - export PATH=/opt/texlive/2020/bin/x86_64-linuxmusl/:${PATH}
+    - latexmk
+  artifacts:
+    paths:
+      - 'thesis.pdf'
